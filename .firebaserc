@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ryzizub": {
+      "hosting": {
+        "corona-counter": [
+          "ryzizub"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "main": "ryzizub"
+  }
+}
