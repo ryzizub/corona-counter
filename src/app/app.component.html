@@ -1,0 +1,77 @@
+<div style="width: 100%;" *ngIf="overallData; else loading">
+    <h1 class="header">Corona virus (COVID-19)</h1>
+    <div class="container">
+        <app-dashboard-block class="card" [firstCount]="overallData.cases" [name]="'Cases / Per million'" [secondCount]="overallData.casesPerOneMillion"></app-dashboard-block>
+        <app-dashboard-block class="card" [firstCount]="overallData.recovered" [name]="'Recovered'"></app-dashboard-block>
+        <app-dashboard-block class="card" [firstCount]="overallData.tests" [name]="'Tests / Per milion'" [secondCount]="overallData.testsPerOneMillion"></app-dashboard-block>
+        <app-dashboard-block class="card" [firstCount]="overallData.deaths" [name]="'Deaths / Per million'" [secondCount]="overallData.deathsPerOneMillion"></app-dashboard-block>
+        <app-dashboard-block class="card" [firstCount]="overallData.todayCases" [name]="'Today cases'"></app-dashboard-block>
+        <app-dashboard-block class="card" [firstCount]="overallData.todayDeaths" [name]="'Today deaths'"></app-dashboard-block>
+    </div>
+    <div class="table-div">
+      <div class="table-inside">
+        <div class="example-header">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+        <mat-table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="country">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.country}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="cases">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Cases </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.cases | number}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="recovered">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Recovered </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.recovered | number}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="tests">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Tests </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.tests | number}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="critical">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Critical </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.critical | number}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="deaths">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Deaths </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.deaths | number}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="todayCases">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Today cases </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.todayCases | number}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="todayDeaths">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Today deaths </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.todayDeaths | number}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+    <div class="bottom">
+      <h4>Made by <b>Ryzizub</b></h4>
+      <h2>Coming soon</h2>
+      <ul>
+        <li>Graphs</li>
+      </ul>
+    </div>
+</div>
+<ng-template #loading>
+  <div style="width: 100%; text-align: center; height: 60px; padding-top: 20px;">
+    <mat-progress-spinner color="accent" mode="indeterminate" style="margin: auto"></mat-progress-spinner>
+  </div>
+</ng-template>

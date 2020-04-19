@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "site": "ryzizub-coronacounter",
+      "public": "dist/corona-counter",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
