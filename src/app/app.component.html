@@ -1,5 +1,8 @@
 <div style="width: 100%;" *ngIf="overallData; else loading">
     <h1 class="header">Corona virus (COVID-19)</h1>
+    <div>
+      Last update: {{overallData.date.toDate().toLocaleString()}}
+    </div>
     <div class="container">
         <app-dashboard-block class="card" [firstCount]="overallData.cases" [name]="'Cases / Per million'" [secondCount]="overallData.casesPerOneMillion"></app-dashboard-block>
         <app-dashboard-block class="card" [firstCount]="overallData.recovered" [name]="'Recovered'"></app-dashboard-block>
